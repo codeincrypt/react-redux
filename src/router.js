@@ -1,10 +1,31 @@
-import Home from "./page/home";
+import Login from "./view/auth/Login";
+import PostList from "./view/page/PostList";
+import ViewPost from "./view/page/ViewPost";
 
-const RouterList = [
+export const RouterList = [
   {
-    path: '/',
-    component: Home,
+    path: "/post",
+    component: PostList,
+    exact: true,
   },
-]
+  
+  {
+    path: "/",
+    component: PostList,
+    exact: true,
+  },
+  
+  {
+    path: "/post:id",
+    component: ViewPost,
+    exact: true,
+  },
+];
 
-export default RouterList;
+export const AuthRouterList = [
+  {
+    path: "/login",
+    component: Login,
+    exact: true,
+  },
+];

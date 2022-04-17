@@ -2,14 +2,14 @@ import React from "react";
 import Footer from "./view/include/Footer";
 import Header from "./view/include/Header";
 
-const MainLayout = ({ children }) => {
+const Authlayout = ({ children }) => {
   return (
     <>
-    <Header />
+      <Header />
       <main className="app-content">{children}</main>
       <Footer />
     </>
   );
 };
 
-export default MainLayout;
+export default Authlayout;
