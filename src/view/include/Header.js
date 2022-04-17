@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./../../assets/import.css";
 const Header = () => {
   return (
@@ -8,24 +9,24 @@ const Header = () => {
           React Redux
         </a>
 
-        <label htmlFor="toggle-1" className="toggle-menu">
+        {/* <label htmlFor="toggle-1" className="toggle-menu">
           <ul>
             <li></li> <li></li> <li></li>
           </ul>
         </label>
-        <input type="checkbox" id="toggle-1" />
+        <input type="checkbox" id="toggle-1" /> */}
 
         <nav className="">
           <ul className="mb-0">
             <li>
-              <a href="#logo">
+              <Link to="/">
                 <i className="icon-home"></i>Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#about">
-                <i className="icon-user"></i>About
-              </a>
+              <Link to="/post">
+                <i className="icon-user"></i>POSTS
+              </Link>
             </li>
             <li>
               <a href="#portfolio">
@@ -43,8 +44,11 @@ const Header = () => {
               </a>
             </li>
             <li>
-              <a href="#contact">
-                <i className="icon-phone"></i>Contact
+            <Link to="/profile">
+                <i className="icon-user"></i>PROFILE
+              </Link>
+              <a href="/login">
+                <i className="icon-phone"></i>Login
               </a>
             </li>
           </ul>

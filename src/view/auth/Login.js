@@ -18,7 +18,7 @@ const Login = (props) => {
         console.log(data);
         if (data !== undefined || data !== null || !data) {
           console.log('token', data)
-          localStorage.setItem("USER", data);
+          localStorage.setItem("REDUXUSER", data.email);
           // history.push('/post');
         }
       },

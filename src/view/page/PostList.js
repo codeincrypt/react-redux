@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { GET_POST } from "../../redux/actions/request";
-import { GET_LOGIN } from "../../redux/actions/auth";
+import { GET_PROFILE } from "../../redux/actions/user";
 
 const PostList = (props) => {
   const [postData, setPostData] = useState("");
   const getPost = () => {
     props.GET_POST(
       (data) => {
-        setPostData(data)
+        setPostData(data);
       },
       (e) => console.log({ e })
     );
-    
+    props.GET_PROFILE(
+      (data) => {
+        // console.log('GET_PROFILE', data);
+      },
+      (e) => console.log({ e })
+    );
   };
 
   useEffect(() => {
@@ -22,43 +28,55 @@ const PostList = (props) => {
 
   return (
     <>
-      <section className="container-fluid">
-        <div className="row">
-          {Array.isArray(postData) && postData.length > 0
-            ? postData.map((item, index) => (
-                <div className="col-12 mb-2" key={index}>
-                  <div className="card gedf-card">
-                    <div className="card-header">
-                      <div className="d-flex justify-content-between align-items-center">
-                        <div className="d-flex justify-content-between align-items-center">
-                          <div className="ml-2">
-                            <div className="h5 m-0">{item.userId}</div>
-                            <div className="h7 text-muted">{item.userId}</div>
+      <section className="container">
+        {/* <div className="col-lg-12"> */}
+          <div className="row">
+            
+            <section className="col-lg-9">
+              <div className="row">
+                {Array.isArray(postData) && postData.length > 0
+                  ? postData.map((item, index) => (
+                      <div className="mb-2" key={index}>
+                        <div className="card gedf-card">
+                          <div className="card-header">
+                            <div className="d-flex justify-content-between align-items-center">
+                              <div className="d-flex justify-content-between align-items-center">
+                                <div className="ml-2">
+                                  <div className="h5 m-0">{item.userId}</div>
+                                  <div className="h7 text-muted">
+                                    {item.userId}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="card-body">
+                            <Link className="card-link" to="/post/1">
+                              <h5 className="card-title">{item.title}</h5>
+                            </Link>
+
+                            <p className="card-text">{item.body}</p>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="card-body">
-                      <a className="card-link" href="#">
-                        <h5 className="card-title">{item.title}</h5>
-                      </a>
-
-                      <p className="card-text">{item.body}</p>
-                    </div>
-                  </div>
-                </div>
-              ))
-            : null}
-        </div>
+                    ))
+                  : null}
+              </div>
+            </section>
+            <div className="col-lg-3">
+              <h1 className="text-center">You are not logged In</h1>
+            </div>
+          </div>
+        {/* </div> */}
       </section>
     </>
   );
 };
 const mapStateToProps = (state) => {
-  // console.log("state",JSON.stringify(state,null,2))
+  console.log("state",JSON.stringify(state,null,2))
   return {
     state,
   };
 };
 
-export default connect(mapStateToProps, { GET_POST, GET_LOGIN })(PostList);
+export default connect(mapStateToProps, { GET_POST, GET_PROFILE })(PostList);

@@ -1,5 +1,6 @@
 import Login from "./view/auth/Login";
 import PostList from "./view/page/PostList";
+import UserProfile from "./view/page/UserProfile";
 import ViewPost from "./view/page/ViewPost";
 
 export const RouterList = [
@@ -18,6 +19,11 @@ export const RouterList = [
   {
     path: "/post:id",
     component: ViewPost,
+    exact: true,
+  },
+  {
+    path: "/profile",
+    component: UserProfile,
     exact: true,
   },
 ];
