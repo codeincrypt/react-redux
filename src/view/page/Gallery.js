@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-const UserProfile = (props) => {
+const Gallery = (props) => {
   const profile = props.profile;
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const UserProfile = (props) => {
       <section className="container">
           <div className="row">
             <section className="col-lg-9">
-              <p>PROFILE </p>
+              <p>GALLERY </p>
              <p>{JSON.stringify(profile)} </p>
             </section>
           </div>
@@ -29,4 +29,4 @@ const mapStateToProps = ({profile}) => {
   };
 };
 
-export default connect(mapStateToProps)(UserProfile);
+export default connect(mapStateToProps)(Gallery);

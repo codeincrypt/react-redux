@@ -6,6 +6,7 @@ import { GET_PROFILE } from "../../redux/actions/user";
 
 const PostList = (props) => {
   const [postData, setPostData] = useState("");
+  const [profiledata, setProfile] = useState("");
   const getPost = () => {
     props.GET_POST(
       (data) => {
@@ -13,11 +14,10 @@ const PostList = (props) => {
       },
       (e) => console.log({ e })
     );
-    props.GET_PROFILE(
-      (data) => {
-        // console.log('GET_PROFILE', data);
-      },
-      (e) => console.log({ e })
+    props.GET_PROFILE((data) => {
+      setProfile(data)
+    },
+    (e) => console.log({ e })
     );
   };
 
@@ -64,7 +64,11 @@ const PostList = (props) => {
               </div>
             </section>
             <div className="col-lg-3">
-              <h1 className="text-center">You are not logged In</h1>
+              {profiledata !== "" ? (
+                <h1 className="text-center text-success">You are logged In {profiledata.name}</h1>
+                ) : (
+                  <h1 className="text-center text-danger">You are not logged In</h1>
+                )}
             </div>
           </div>
         {/* </div> */}
@@ -73,7 +77,7 @@ const PostList = (props) => {
   );
 };
 const mapStateToProps = (state) => {
-  console.log("state",JSON.stringify(state,null,2))
+  // console.log("state",JSON.stringify(state.profile,null,2))
   return {
     state,
   };

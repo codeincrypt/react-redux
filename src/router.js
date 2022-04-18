@@ -1,4 +1,5 @@
 import Login from "./view/auth/Login";
+import Gallery from "./view/page/Gallery";
 import PostList from "./view/page/PostList";
 import UserProfile from "./view/page/UserProfile";
 import ViewPost from "./view/page/ViewPost";
@@ -24,6 +25,11 @@ export const RouterList = [
   {
     path: "/profile",
     component: UserProfile,
+    exact: true,
+  },
+  {
+    path: "/gallery",
+    component: Gallery,
     exact: true,
   },
 ];

@@ -12,14 +12,13 @@ const Login = (props) => {
     if (!email || !password) {
       alert("Please enter a valid data");
     }
-    props.GET_LOGIN(
-      { email: email, password: password },
+    props.GET_LOGIN({ email: email, password: password },
       (data) => {
-        console.log(data);
-        if (data !== undefined || data !== null || !data) {
-          console.log('token', data)
-          localStorage.setItem("REDUXUSER", data.email);
-          // history.push('/post');
+        console.log('GET_LOGIN', data);
+        if (data.isLogin === true) {
+          console.log('token', data.token)
+          localStorage.setItem("REDUXUSER", data.token);
+          history.push('/post');
         }
       },
       (e) => console.log({ e })
@@ -76,7 +75,7 @@ const Login = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  // console.log("state",JSON.stringify(state,null,2))
+  console.log("state",JSON.stringify(state,null,2))
   return {
     state,
   };

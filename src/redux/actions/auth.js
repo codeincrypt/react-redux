@@ -6,7 +6,7 @@ const headers = {
   // Authorization: 'Bearer ' + localStorage.getItem('lvkartmerchant'),
 }
 
-export const GET_LOGIN =  ({email, password},success, error) => async (dispatch) => {
+export const GET_LOGIN = ({email, password},success, error) => async (dispatch) => {
   try {
     const response = await  fetch(`${URL_STRING}/users`, {
       method : "GET",
@@ -17,8 +17,13 @@ export const GET_LOGIN =  ({email, password},success, error) => async (dispatch)
     const loginUser = json.find((e) => {
       return e.email === email && e.username === password;
     });
-    success(loginUser)
-    dispatch({type : ACTIONS.GET_LOGIN, payload : json})
+    var info = {
+      token : loginUser.email,
+      isLogin : true,
+      message : "Logged In"
+    }
+    success(info)
+    dispatch({type : ACTIONS.GET_LOGIN, payload : info})
     
   } catch (e) {
       error(e)

@@ -1,27 +1,9 @@
 import { ACTIONS } from "../types";
 
 const intitial_state = {
-  id: "",
-  name: "",
-  username: "",
-  email: "",
-  address: {
-    street: "",
-    suite: "",
-    city: "",
-    zipcode: "",
-    geo: {
-      lat: "",
-      lng: "",
-    },
-  },
-  phone: "",
-  website: "",
-  company: {
-    name: "",
-    catchPhrase: "",
-    bs: "",
-  },
+  token   : "",
+  isLogin : false,
+  message : ""
 };
 
 export default (state = intitial_state, action) => {
