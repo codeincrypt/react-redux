@@ -14,9 +14,7 @@ const Login = (props) => {
     }
     props.GET_LOGIN({ email: email, password: password },
       (data) => {
-        console.log('GET_LOGIN', data);
         if (data.isLogin === true) {
-          console.log('token', data.token)
           localStorage.setItem("REDUXUSER", data.token);
           history.push('/post');
         }
@@ -75,7 +73,6 @@ const Login = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log("state",JSON.stringify(state,null,2))
   return {
     state,
   };

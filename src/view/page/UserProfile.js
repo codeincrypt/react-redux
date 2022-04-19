@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { GET_PROFILE } from "../../redux/actions/user";
 
 const UserProfile = (props) => {
-  const profile = props.profile;
+  const [profile, setProfile] = useState();
+  
+  const getProfile = () => {
+    if(props.profile.id === '') {
+      props.GET_PROFILE((data) => { setProfile(data) }, (e) => console.log({ e }));
+    } else {
+      setProfile(props.profile);
+    }
+  }
 
   useEffect(() => {
+    getProfile();
     //eslint-disable-next-line
   }, []);
 
@@ -23,10 +32,9 @@ const UserProfile = (props) => {
   );
 };
 const mapStateToProps = ({profile}) => {
-  console.log("state",JSON.stringify(profile,null,2))
   return {
     profile,
   };
 };
 
-export default connect(mapStateToProps)(UserProfile);
+export default connect(mapStateToProps, {GET_PROFILE})(UserProfile);
