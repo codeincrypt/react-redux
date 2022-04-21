@@ -17,7 +17,10 @@ const PostList = (props) => {
     props.GET_PROFILE((data) => {
       setProfile(data)
     },
-    (e) => console.log({ e })
+    (e) => {
+      setProfile("")
+      console.log('GET_PROFILE', { e })
+    }
     );
   };
 
@@ -64,10 +67,10 @@ const PostList = (props) => {
               </div>
             </section>
             <div className="col-lg-3">
-              {profiledata !== "" ? (
-                <h1 className="text-center text-success">You are logged In {profiledata.name}</h1>
+              {profiledata === "" || profiledata === undefined ? (
+                <h1 className="text-center text-danger">You are not logged In. Login to get your account</h1>
                 ) : (
-                  <h1 className="text-center text-danger">You are not logged In</h1>
+                  <h1 className="text-center text-success">You are logged In {profiledata.name}</h1>
                 )}
             </div>
           </div>
